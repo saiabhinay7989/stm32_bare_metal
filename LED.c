@@ -1,0 +1,42 @@
+#define PERIPH_BASE (0x40000000UL)
+
+#define AHB1_PERIPH_OFFSET (0x020000UL)
+#define AHB1_PERIPH_BASE (PERIPH_BASE + AHB1_PERIPH_OFFSET)
+
+#define GPIOA_OFFSET (0x00UL)
+#define GPIOA_BASE (AHB1_PERIPH_BASE + GPIOA_OFFSET)
+
+#define RCC_OFFSET (0x3800UL)
+#define RCC_BASE (AHB1_PERIPH_BASE + RCC_OFFSET)//check if this does not work
+
+#define AHB1EN_R_OFFSET (0x30UL)
+#define RCC_AHB1EN_R (*(volatile unsigned int*) (RCC_BASE + AHB1EN_R_OFFSET))
+
+#define GPIOAEN (1U<<0)
+
+#define MODE_R_OFFSET (0x00UL)
+#define GPIOA_MODE_R (*(volatile unsigned int*) (GPIOA_BASE + MODE_R_OFFSET))
+//pin 10 set to 1 1U<<10 shifting that bit to 10th position starting from 0th position
+//pin 11 set to 0 1U<<11 shifting that bit to 11th position
+//make sure u remember that the starting number is 0 bit/position
+#define OD_R_OFFSET (0x14UL)
+#define GPIOA_OD_R  (*(volatile unsigned int*) (GPIOA_BASE + OD_R_OFFSET))
+
+#define PIN5 (1U<<5)
+#define LED_PIN (PIN5)
+
+int main (void){
+
+	RCC_AHB1EN_R |=GPIOAEN;
+
+	GPIOA_MODE_R |=(1U<<10);
+	GPIOA_MODE_R &=~(1U<<11);
+while(1){
+	GPIOA_OD_R ^=LED_PIN;
+for(int i=0;i<100000;i++){}
+
+}
+
+
+
+}
