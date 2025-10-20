@@ -16,9 +16,7 @@
 
 #define MODE_R_OFFSET (0x00UL)
 #define GPIOA_MODE_R (*(volatile unsigned int*) (GPIOA_BASE + MODE_R_OFFSET))
-//pin 10 set to 1 1U<<10 shifting that bit to 10th position starting from 0th position
-//pin 11 set to 0 1U<<11 shifting that bit to 11th position
-//make sure u remember that the starting number is 0 bit/position
+
 #define OD_R_OFFSET (0x14UL)
 #define GPIOA_OD_R  (*(volatile unsigned int*) (GPIOA_BASE + OD_R_OFFSET))
 
@@ -40,3 +38,4 @@ for(int i=0;i<100000;i++){}
 
 
 }
+
