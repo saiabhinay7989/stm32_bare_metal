@@ -1,4 +1,4 @@
-#include<stdint.h>//foruint32_t what is t?
+#include<stdint.h>
 
 #define PERIPH_BASE (0x40000000UL)//base addresses
 
@@ -88,6 +88,7 @@ int main (void){
 
 
 }
+
 
 
 
